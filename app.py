@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, make_response, render_template
-from templates.db_model.Personne import Personne, PersonneSchema, db
-from crud.personne import methods
+from templates.db_model.Commentaire import Commentaire, CommentaireSchema, db
+from crud.commentaire import methods
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -18,12 +18,8 @@ with app.app_context():
         return self
 
 
-    def __init__(self, nom, prenom, mail, numTel, sexe):
-        self.nom = nom
-        self.prenom = prenom
-        self.mail = mail
-        self.numTel = numTel
-        self.sexe = sexe
+    def __init__(self, corps):
+        self.corps = corps
 
 
     def __repr__(self):
@@ -35,29 +31,29 @@ def home():
     return render_template('html/home.html')
 
 
-@app.route('/api/quentin/personne', methods=['POST'])
-def create_personne():
-    return methods.create_personne()
+@app.route('/api/quentin/commentaires', methods=['POST'])
+def create_commentaire():
+    return methods.create_commentaire()
 
 
-@app.route('/api/quentin/personnes', methods=['GET'])
+@app.route('/api/quentin/commentaires', methods=['GET'])
 def index():
     return methods.index()
 
 
-@app.route('/api/quentin/personne/<id>', methods=['GET'])
-def get_personne_by_id(id):
-    return methods.get_personne_by_id(id)
+@app.route('/api/quentin/commentaire/<id>', methods=['GET'])
+def get_commentaire_by_id(id):
+    return methods.get_commentaire_by_id(id)
 
 
-@app.route('/api/quentin/personne/<id>', methods=['PUT'])
-def update_personne_by_id(id):
-    return methods.update_personne_by_id(id)
+@app.route('/api/quentin/commentaire/<id>', methods=['PUT'])
+def update_commentaire_by_id(id):
+    return methods.update_commentaire_by_id(id)
 
 
-@app.route('/api/quentin/personne/<id>', methods=['DELETE'])
-def delete_personne_by_id(id):
-    return methods.delete_personne_by_id(id)
+@app.route('/api/quentin/commentaire/<id>', methods=['DELETE'])
+def delete_commentaire_by_id(id):
+    return methods.delete_commentaire_by_id(id)
 
 
 if __name__ == '__main__':
