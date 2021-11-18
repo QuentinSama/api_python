@@ -1,8 +1,6 @@
 from flask import Flask, request, jsonify, make_response
-from templates.db_model.Commentaire import CommentaireSchema, Commentaire
-from flask_sqlalchemy import SQLAlchemy
+from templates.db_model.Commentaire import CommentaireSchema, Commentaire, db
 
-db = SQLAlchemy()
 
 
 def create_commentaire():

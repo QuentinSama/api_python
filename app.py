@@ -1,5 +1,5 @@
-from flask import Flask, request, jsonify, make_response, render_template
-from templates.db_model.Commentaire import Commentaire, CommentaireSchema, db
+from flask import Flask, render_template
+from templates.db_model.Commentaire import db
 from crud.commentaire import methods
 
 app = Flask(__name__)
@@ -10,21 +10,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db.init_app(app)
 with app.app_context():
     db.create_all()
-
-
-    def create(self):
-        db.session.add(self)
-        db.session.commit()
-        return self
-
-
-    def __init__(self, corps):
-        self.corps = corps
-
-
-    def __repr__(self):
-        return f"{self.id}"
-
 
 @app.route('/', methods=['GET'])
 def home():
